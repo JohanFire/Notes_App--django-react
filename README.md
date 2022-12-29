@@ -88,3 +88,12 @@ we could do all this manually, but it would be a lot of work. Instead, we can us
         'rest_framework',
     ]
 ```
+
+---
+
+# Frontend
+## Create React App
+This time will use create react app, maybe in a real use case I shouldn't use it, but for this case is ok.
+```bash
+    npx create-react-app frontend
+```
