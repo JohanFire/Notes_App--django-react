@@ -69,3 +69,22 @@ convert our new Note model into a table in our database
 
     admin.site.register(Note)
 ```
+
+---
+
+## Django Rest Framework
+Django REST framework is a powerful and flexible toolkit for building Web APIs.
+we could do all this manually, but it would be a lot of work. Instead, we can use Django REST framework to handle the serialization for us.
+### Install Django Rest Framework
+```bash
+    pip install djangorestframework
+```
+
+### Add rest_framework to INSTALLED_APPS
+```python
+    # notes_app/settings.py
+    INSTALLED_APPS = [
+        ...
+        'rest_framework',
+    ]
+```
