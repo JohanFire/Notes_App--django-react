@@ -15,6 +15,13 @@ export default function NotesListPage() {
     };
 
     return (
-        <h2>hello from NotesListPage.js</h2>
+        <div style={{ backgroundColor: 'aqua' }}>
+            <h2>hello from NotesListPage.js</h2>
+            <div>
+                {notes.map((note, index) => (
+                    <p key={index}>{note.body}</p> // key={index}  is for DOM so each element has an unique key.
+                ))}
+            </div>
+        </div>
     )
 }
