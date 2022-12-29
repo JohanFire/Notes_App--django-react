@@ -10,7 +10,7 @@ export default function NotesListPage() {
     const get_notes = async () => {
         const response = await fetch('http://127.0.0.1:8000/api/notes/')
         const data = await response.json()
-        console.log(`DATA: ${data}`);
+        console.log(`DATA: `, data);
         setNotes(data)
     };
 

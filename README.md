@@ -97,3 +97,44 @@ This time will use create react app, maybe in a real use case I shouldn't use it
 ```bash
     npx create-react-app frontend
 ```
+
+---
+
+## CORS bug fixing
+https://pypi.org/project/django-cors-headers/
+### Install django-cors-headers
+```bash
+    pip install django-cors-headers
+```
+
+### Add corsheaders to INSTALLED_APPS
+```python
+    # notes_app/settings.py
+    INSTALLED_APPS = [
+        ...
+        'corsheaders',
+    ]
+```
+
+### Add corsheaders middleware
+```python
+    # notes_app/settings.py
+    MIDDLEWARE = [
+        ...
+        'corsheaders.middleware.CorsMiddleware',
+        # 'django.middleware.common.CommonMiddleware',
+    ]
+```
+
+### Add corsheaders config
+```python
+    # notes_app/settings.py
+    CORS_ALLOWED_ORIGINS = [] # allow only whitelisted origins
+    # or
+    CORS_ORIGIN_ALLOW_ALL = True # allow all origins
+    # or
+    CORS_ORIGIN_WHITELIST = [] # allow only whitelisted origins
+    # or
+    CORS_ORIGIN_REGEX_WHITELIST = [] # allow only whitelisted origins with regex
+    # or
+```
