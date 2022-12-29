@@ -26,3 +26,8 @@ inside the virtual environment
 ```bash
     python manage.py runserver
 ```
+
+## Create Django App
+```bash
+    python manage.py startapp api
+```
