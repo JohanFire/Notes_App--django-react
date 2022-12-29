@@ -114,3 +114,13 @@ This time will use create react app, maybe in a real use case I shouldn't use it
         'corsheaders',
     ]
 ```
+
+### Add corsheaders middleware
+```python
+    # notes_app/settings.py
+    MIDDLEWARE = [
+        ...
+        'corsheaders.middleware.CorsMiddleware',
+        # 'django.middleware.common.CommonMiddleware',
+    ]
+```
