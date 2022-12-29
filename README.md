@@ -97,3 +97,20 @@ This time will use create react app, maybe in a real use case I shouldn't use it
 ```bash
     npx create-react-app frontend
 ```
+
+---
+
+## CORS bug fixing
+### Install django-cors-headers
+```bash
+    pip install django-cors-headers
+```
+
+### Add corsheaders to INSTALLED_APPS
+```python
+    # notes_app/settings.py
+    INSTALLED_APPS = [
+        ...
+        'corsheaders',
+    ]
+```
