@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+import ListItem from '../components/ListItem'
 
 export default function NotesListPage() {
     const [notes, setNotes] = useState([])
@@ -19,7 +20,7 @@ export default function NotesListPage() {
             <h2>hello from NotesListPage.js</h2>
             <div>
                 {notes.map((note, index) => (
-                    <p key={index}>{note.body}</p> // key={index}  is for DOM so each element has an unique key.
+                    <ListItem key={index} note={note} />
                 ))}
             </div>
         </div>
