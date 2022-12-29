@@ -7,7 +7,7 @@ function App() {
   return (
     <div className="App">
       <Header />
-      Hello world!. This is my app
+      Hello world!. This is my App.js
       <NotesListPage />
     </div>
   );
