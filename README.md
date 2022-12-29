@@ -138,3 +138,12 @@ https://pypi.org/project/django-cors-headers/
     CORS_ORIGIN_REGEX_WHITELIST = [] # allow only whitelisted origins with regex
     # or
 ```
+
+---
+
+## React Router Dom
+https://reactrouter.com/web/guides/quick-start
+### Install react-router-dom
+```bash
+    npm install react-router-dom
+```
