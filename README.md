@@ -60,3 +60,12 @@ convert our new Note model into a table in our database
 ```bash
     python manage.py createsuperuser
 ```
+
+### Register Note model in django admin panel
+```python
+    # api/admin.py
+    from django.contrib import admin
+    from .models import Note
+
+    admin.site.register(Note)
+```
