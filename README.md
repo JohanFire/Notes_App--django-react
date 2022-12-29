@@ -53,3 +53,10 @@ convert our new Note model into a table in our database
     python manage.py migrate
 ```
 
+---
+
+## Django Admin Panel
+### Create Super User
+```bash
+    python manage.py createsuperuser
+```
