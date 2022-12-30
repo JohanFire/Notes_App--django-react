@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react'
-import { useParams } from 'react-router-dom'
+import { useParams, Link } from 'react-router-dom'
+
+import { ReactComponent as ArrowLeft } from '../assets/arrow-left.svg'
 
 const NotePage = () => {
     const { id: noteId } = useParams() // react-router-dom v6 syntax another way of writing it
@@ -17,10 +19,15 @@ const NotePage = () => {
     };
 
     return (
-        <div>
-            <h1>Single NotePage.js: {noteId}</h1>
-            <p>{note?.body}</p> {/*if note is not null, then show the body*/}
-        </div>
+        <div className='note'>
+            <div className='note-header'></div>
+            <h3>
+                <Link to="/">
+                    <ArrowLeft />
+                </Link>
+            </h3>
+            <textarea defaultValue={note?.body}></textarea> {/*if note is not null, then show the body*/}
+        </div >
     )
 }
 
