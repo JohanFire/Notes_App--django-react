@@ -14,7 +14,7 @@ function App() {
         <p>Hello world!. This is my App.js</p>
         <Routes>
           <Route path="/" element={<NotesListPage />} />
-          <Route path="/note/:noteId" element={<NotePage />} />
+          <Route path="/note/:id" element={<NotePage />} />
         </Routes>
       </div>
     </Router>
