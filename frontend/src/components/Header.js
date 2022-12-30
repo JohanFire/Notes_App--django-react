@@ -1,10 +1,15 @@
 // rafce
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 const Header = () => {
     return (
-        <div>
-            <h1>This is the Header.js</h1>
+        <div className='app-header'>
+            <h1>
+                <Link to={'/'}>
+                    Note List
+                </Link>
+            </h1>
         </div>
     )
 }

@@ -9,13 +9,18 @@ import NotePage from './pages/NotePage'
 function App() {
   return (
     <Router>
-      <div className="App">
-        <Header />
-        <p>Hello world!. This is my App.js</p>
-        <Routes>
-          <Route path="/" element={<NotesListPage />} />
-          <Route path="/note/:id" element={<NotePage />} />
-        </Routes>
+      <div className="container dark">
+        <div className='app'>
+          <Header />
+          <p style={{ float: 'right' }}>
+            <a href='https://github.com/JohanFire' target={'_blank'}>github.com/johanfire</a>
+          </p>
+          <br></br>
+          <Routes>
+            <Route path="/" element={<NotesListPage />} />
+            <Route path="/note/:id" element={<NotePage />} />
+          </Routes>
+        </div>
       </div>
     </Router>
 
