@@ -22,7 +22,6 @@ export default function NotesListPage() {
                 <h2 className='notes-title'>&#9782; Notes</h2>
                 <p className='notes-count'>{notes.length}</p>
             </div>
-            <h2>hello from NotesListPage.js</h2>
             <div className='notes-list'>
                 {notes.map((note, index) => (
                     <ListItem key={index} note={note} />
