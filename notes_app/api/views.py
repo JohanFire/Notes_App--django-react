@@ -58,6 +58,15 @@ def get_note_details(request, pk):
     serializer = NoteSerializer(notes, many=False) # many=False because we are serializing a single object 
     return Response(serializer.data)
 
+@api_view(['POST'])
+def post_note(request):
+    data = request.data
+    note = Note.objects.create(
+        body = data['body']
+    )
+    serializer = NoteSerializer(note, many=False)
+    return Response(serializer.data)
+
 @api_view(['PUT'])
 def update_note(request, pk):
     data = request.data
