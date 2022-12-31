@@ -52,9 +52,13 @@ const NotePage = () => {
                         <ArrowLeft onClick={hande_submit} />
                     </Link>
                 </h3>
-                <Link to={"/"}>
-                    <button onClick={delete_note}>Delete</button>
-                </Link>
+                {noteId !== 'new' ? (
+                    <Link to={"/"}>
+                        <button onClick={delete_note}>Delete</button>
+                    </Link>
+                ) : (
+                    <button>Save</button>
+                )}
             </div>
             <textarea
                 onChange={(e) => { setNote({ ...note, 'body': e.target.value }) }}
