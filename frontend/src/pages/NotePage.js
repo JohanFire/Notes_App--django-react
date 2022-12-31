@@ -26,7 +26,10 @@ const NotePage = () => {
                     <ArrowLeft />
                 </Link>
             </h3>
-            <textarea defaultValue={note?.body}></textarea> {/*if note is not null, then show the body*/}
+            <textarea
+                onChange={(e) => { setNote({ ...note, 'body': e.target.value }) }}
+                defaultValue={note?.body}>
+            </textarea> {/*if note is not null, then show the body*/}
         </div >
     )
 }
