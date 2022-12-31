@@ -3,7 +3,7 @@ import { useParams, Link } from 'react-router-dom'
 
 import { ReactComponent as ArrowLeft } from '../assets/arrow-left.svg'
 
-const NotePage = (history) => {
+const NotePage = () => {
     const { id: noteId } = useParams() // react-router-dom v6 syntax another way of writing it
     const [note, setNote] = useState(null)
 
@@ -30,7 +30,6 @@ const NotePage = (history) => {
 
     const hande_submit = () => {
         update_note()
-        // history.push('/') // send the user back to the home page
     };
 
     return (
