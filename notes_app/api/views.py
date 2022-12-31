@@ -48,7 +48,7 @@ def get_routes(request):
 
 @api_view(['GET'])
 def get_notes(request):
-    notes = Note.objects.all().values()
+    notes = Note.objects.all().order_by('-updated_at') # -updated_at = descending order, shows more recent updated Note at first
     serializer = NoteSerializer(notes, many=True) # many=True because we are serializing multiple objects
     return Response(serializer.data)
 
