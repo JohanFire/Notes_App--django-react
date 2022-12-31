@@ -1,12 +1,12 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 
-import { ReactComponent as Add } from '../assets/add.svg'
+import { ReactComponent as AddButton } from '../assets/add.svg'
 
 const AddNoteButton = () => {
     return (
         <Link to={"/note/new"} className="floating-button">
-            <Add />
+            <AddButton />
         </Link>
     )
 }
