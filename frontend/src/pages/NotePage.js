@@ -43,7 +43,13 @@ const NotePage = () => {
     }
 
     const hande_submit = () => {
-        update_note()
+        if (noteId !== 'new' && !note.body) {
+            delete_note()
+            console.log('delete_note()');
+        } else if (noteId !== 'new') {
+            update_note()
+            console.log('update_note()');
+        }
     };
 
     return (
