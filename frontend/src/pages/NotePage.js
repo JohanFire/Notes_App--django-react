@@ -19,14 +19,26 @@ const NotePage = () => {
     };
 
     const update_note = async () => {
-        fetch(`/api/notes/${noteId}/update`, {
+        fetch(`/api/notes/${noteId}/update/`, {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify(note)
         })
+        // send user back to home page
+        // window.location.href = '/'
     };
+
+    const delete_note = async () => {
+        fetch(`/api/notes/${noteId}/delete/`, {
+            method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(note)
+        })
+    }
 
     const hande_submit = () => {
         update_note()
@@ -34,12 +46,16 @@ const NotePage = () => {
 
     return (
         <div className='note'>
-            <div className='note-header'></div>
-            <h3>
-                <Link to="/" >
-                    <ArrowLeft onClick={hande_submit} />
+            <div className='note-header'>
+                <h3>
+                    <Link to="/" >
+                        <ArrowLeft onClick={hande_submit} />
+                    </Link>
+                </h3>
+                <Link to={"/"}>
+                    <button onClick={delete_note}>Delete</button>
                 </Link>
-            </h3>
+            </div>
             <textarea
                 onChange={(e) => { setNote({ ...note, 'body': e.target.value }) }}
                 defaultValue={note?.body}>
