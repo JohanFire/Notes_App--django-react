@@ -52,10 +52,15 @@ const NotePage = () => {
         })
     }
 
-    const hande_submit = () => {
-        if (noteId !== 'new' && !note.body) {
-            delete_note()
-            console.log('delete_note()');
+    const handle_submit = () => {
+        console.log('NOTE:', note);
+        if (noteId !== 'new' && note.body === '') {
+            // This is not working yet, hmmm.
+            // What exactly? 
+            // I was trying to delete an existing Note when you erase all content and click the back arrow.
+
+            // delete_note()
+            // console.log('delete_note()');
         } else if (noteId !== 'new') {
             update_note()
             console.log('update_note()');
@@ -70,7 +75,7 @@ const NotePage = () => {
             <div className='note-header'>
                 <h3>
                     <Link to="/" >
-                        <ArrowLeft onClick={hande_submit} />
+                        <ArrowLeft onClick={handle_submit} />
                     </Link>
                 </h3>
                 {noteId !== 'new' ? (
