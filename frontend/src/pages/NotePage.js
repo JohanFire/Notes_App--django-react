@@ -3,7 +3,7 @@ import { useParams, Link } from 'react-router-dom'
 
 import { ReactComponent as ArrowLeft } from '../assets/arrow-left.svg'
 
-const NotePage = () => {
+const NotePage = (history) => {
     const { id: noteId } = useParams() // react-router-dom v6 syntax another way of writing it
     const [note, setNote] = useState(null)
 
@@ -18,15 +18,33 @@ const NotePage = () => {
         console.log(`DATA: `, data);
     };
 
+    const update_note = async () => {
+        fetch(`/api/notes/${noteId}/update`, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(note)
+        })
+    };
+
+    const hande_submit = () => {
+        update_note()
+        // history.push('/') // send the user back to the home page
+    };
+
     return (
         <div className='note'>
             <div className='note-header'></div>
             <h3>
-                <Link to="/">
-                    <ArrowLeft />
+                <Link to="/" >
+                    <ArrowLeft onClick={hande_submit} />
                 </Link>
             </h3>
-            <textarea defaultValue={note?.body}></textarea> {/*if note is not null, then show the body*/}
+            <textarea
+                onChange={(e) => { setNote({ ...note, 'body': e.target.value }) }}
+                defaultValue={note?.body}>
+            </textarea> {/*if note is not null, then show the body*/}
         </div >
     )
 }
