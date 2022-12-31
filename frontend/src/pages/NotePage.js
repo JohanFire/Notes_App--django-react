@@ -64,7 +64,7 @@ const NotePage = () => {
         } else if (noteId !== 'new') {
             update_note()
             console.log('update_note()');
-        } else if (noteId == 'new' && note !== null) {
+        } else if (noteId === 'new' && note !== null) {
             post_note()
             console.log('post_note()');
         }
