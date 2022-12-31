@@ -12,6 +12,8 @@ const NotePage = () => {
     }, [noteId]) // if I dont pass an empty array, it will run it infinitely
 
     const get_note = async () => {
+        if (noteId === 'new') return
+
         const response = await fetch(`/api/notes/${noteId}`)
         const data = await response.json()
         setNote(data)
