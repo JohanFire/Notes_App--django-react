@@ -18,11 +18,21 @@ const NotePage = () => {
         console.log(`DATA: `, data);
     };
 
+    const update_note = async () => {
+        fetch(`/api/notes/${noteId}/update`, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(note.body)
+        })
+    };
+
     return (
         <div className='note'>
             <div className='note-header'></div>
             <h3>
-                <Link to="/">
+                <Link to="/" onClick={hande_submit()}>
                     <ArrowLeft />
                 </Link>
             </h3>
