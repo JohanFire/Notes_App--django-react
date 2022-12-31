@@ -20,6 +20,16 @@ const NotePage = () => {
         console.log(`DATA: `, data);
     };
 
+    const post_note = async () => {
+        fetch(`/api/notes/post/`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(note)
+        })
+    };
+
     const update_note = async () => {
         fetch(`/api/notes/${noteId}/update/`, {
             method: 'PUT',
@@ -49,6 +59,9 @@ const NotePage = () => {
         } else if (noteId !== 'new') {
             update_note()
             console.log('update_note()');
+        } else if (noteId == 'new' && note !== null) {
+            post_note()
+            console.log('post_note()');
         }
     };
 
@@ -65,7 +78,10 @@ const NotePage = () => {
                         <button onClick={delete_note}>Delete</button>
                     </Link>
                 ) : (
-                    <button>Save</button>
+                    <Link to={"/"}>
+                        <button onClick={post_note}>Save</button>
+                    </Link>
+
                 )}
             </div>
             <textarea
