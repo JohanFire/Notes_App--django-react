@@ -12,10 +12,22 @@ const NotePage = () => {
     }, [noteId]) // if I dont pass an empty array, it will run it infinitely
 
     const get_note = async () => {
+        if (noteId === 'new') return
+
         const response = await fetch(`/api/notes/${noteId}`)
         const data = await response.json()
         setNote(data)
         console.log(`DATA: `, data);
+    };
+
+    const post_note = async () => {
+        fetch(`/api/notes/post/`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(note)
+        })
     };
 
     const update_note = async () => {
@@ -41,7 +53,16 @@ const NotePage = () => {
     }
 
     const hande_submit = () => {
-        update_note()
+        if (noteId !== 'new' && !note.body) {
+            delete_note()
+            console.log('delete_note()');
+        } else if (noteId !== 'new') {
+            update_note()
+            console.log('update_note()');
+        } else if (noteId == 'new' && note !== null) {
+            post_note()
+            console.log('post_note()');
+        }
     };
 
     return (
@@ -52,9 +73,16 @@ const NotePage = () => {
                         <ArrowLeft onClick={hande_submit} />
                     </Link>
                 </h3>
-                <Link to={"/"}>
-                    <button onClick={delete_note}>Delete</button>
-                </Link>
+                {noteId !== 'new' ? (
+                    <Link to={"/"}>
+                        <button onClick={delete_note}>Delete</button>
+                    </Link>
+                ) : (
+                    <Link to={"/"}>
+                        <button onClick={post_note}>Save</button>
+                    </Link>
+
+                )}
             </div>
             <textarea
                 onChange={(e) => { setNote({ ...note, 'body': e.target.value }) }}
