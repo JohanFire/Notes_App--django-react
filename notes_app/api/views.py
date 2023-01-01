@@ -5,7 +5,7 @@ from rest_framework.decorators import api_view
 
 from .models import Note
 from .serializers import NoteSerializer
-from .utils import get_note, update_note, delete_note
+from .utils import get_note, update_note, delete_note, get_all_notes, post_new_note
 
 # Create your views here.
 
@@ -48,19 +48,12 @@ def get_routes(request):
     return Response(routes)
 
 @api_view(['GET', 'POST'])
-def get_post_notes(request):
+def notes(request):
     if request.method == 'GET':
-        notes = Note.objects.all().order_by('-updated_at') # -updated_at = descending order, shows more recent updated Note at first
-        serializer = NoteSerializer(notes, many=True) # many=True because we are serializing multiple objects
-        return Response(serializer.data)
+        return get_all_notes(request)
     
     elif request.method == 'POST':
-        data = request.data
-        note = Note.objects.create(
-            body = data['body']
-        )
-        serializer = NoteSerializer(note, many=False)
-        return Response(serializer.data)
+        return post_new_note(request)
 
 @api_view(['GET', 'PUT', 'DELETE'])
 def note_details(request, pk):
