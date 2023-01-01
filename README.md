@@ -158,6 +158,7 @@ And if I go to 127.0.0.1:8000/api/   I should see the backend.
 move the frontend folder to the root of the django project
 
 ## Run npm build in frontend folder
+The build is in the .gitignore so will have tu build it manually in every branch
 ```bash
     npm run build
 ```
