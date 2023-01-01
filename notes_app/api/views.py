@@ -47,10 +47,19 @@ def get_routes(request):
     return Response(routes)
 
 @api_view(['GET'])
-def get_notes(request):
-    notes = Note.objects.all().order_by('-updated_at') # -updated_at = descending order, shows more recent updated Note at first
-    serializer = NoteSerializer(notes, many=True) # many=True because we are serializing multiple objects
-    return Response(serializer.data)
+def get_post_notes(request):
+    if request.method == 'GET':
+        notes = Note.objects.all().order_by('-updated_at') # -updated_at = descending order, shows more recent updated Note at first
+        serializer = NoteSerializer(notes, many=True) # many=True because we are serializing multiple objects
+        return Response(serializer.data)
+    
+    elif request.method == 'POST':
+        data = request.data
+        note = Note.objects.create(
+            body = data['body']
+        )
+        serializer = NoteSerializer(note, many=False)
+        return Response(serializer.data)
 
 @api_view(['GET'])
 def get_note_details(request, pk):
@@ -58,14 +67,14 @@ def get_note_details(request, pk):
     serializer = NoteSerializer(notes, many=False) # many=False because we are serializing a single object 
     return Response(serializer.data)
 
-@api_view(['POST'])
-def post_note(request):
-    data = request.data
-    note = Note.objects.create(
-        body = data['body']
-    )
-    serializer = NoteSerializer(note, many=False)
-    return Response(serializer.data)
+# @api_view(['POST'])
+# def post_note(request):
+#     data = request.data
+#     note = Note.objects.create(
+#         body = data['body']
+#     )
+#     serializer = NoteSerializer(note, many=False)
+#     return Response(serializer.data)
 
 @api_view(['PUT'])
 def update_note(request, pk):
