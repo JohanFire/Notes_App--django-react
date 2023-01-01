@@ -184,3 +184,19 @@ move the frontend folder to the root of the django project
     ]
 ```
 
+## Render React templates
+```python
+    # notes_app/urls.py
+    from django.views.generic import TemplateView
+
+    urlpatterns = [
+        ...
+        path('', TemplateView.as_view(template_name='index.html')),
+    ]
+```
+
+## Now Django is officially holding & serving the React app
+```bash
+    python manage.py runserver
+    # will run both backend & frontend (django & react)
+```
