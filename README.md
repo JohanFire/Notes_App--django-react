@@ -223,3 +223,29 @@ This is fixed with:
     // change BrowserRouter to HashRouter
 ```
 this will show a # in every react route, may not look good, but it works.
+
+---
+
+# Bug fixed
+I got a bug when trying to solve the react router url bug, this was a cache bug, so using the first solution gave me more problems, the real solution was to use the second one(the # solution), but I had to clear the cache of the browser to make it work. 
+
+---
+
+# Making the API, RESTFUL
+means for example, having GET & POST in the same URL, and not going separately like we used before:
+
+__Restful practica example:__
+`/notes GET`
+`/notes POST`
+or with a detail view:
+`/notes/<id> GET`
+`/notes/<id> PUT`
+`/notes/<id> DELETE`
+
+__Not Restful practica example:__
+`/notes GET`
+`/notes/create POST`
+or with a detail view:
+`/notes/<id> GET`
+`/notes/<id>/update PUT`
+`/notes/<id>/delete DELETE`

@@ -5,6 +5,7 @@ from rest_framework.decorators import api_view
 
 from .models import Note
 from .serializers import NoteSerializer
+from .utils import get_note, update_note, delete_note, get_all_notes, post_new_note
 
 # Create your views here.
 
@@ -46,40 +47,21 @@ def get_routes(request):
 
     return Response(routes)
 
-@api_view(['GET'])
-def get_notes(request):
-    notes = Note.objects.all().order_by('-updated_at') # -updated_at = descending order, shows more recent updated Note at first
-    serializer = NoteSerializer(notes, many=True) # many=True because we are serializing multiple objects
-    return Response(serializer.data)
+@api_view(['GET', 'POST'])
+def notes(request):
+    if request.method == 'GET':
+        return get_all_notes(request)
+    
+    elif request.method == 'POST':
+        return post_new_note(request)
 
-@api_view(['GET'])
-def get_note_details(request, pk):
-    notes = Note.objects.get(id=pk)
-    serializer = NoteSerializer(notes, many=False) # many=False because we are serializing a single object 
-    return Response(serializer.data)
+@api_view(['GET', 'PUT', 'DELETE'])
+def note_details(request, pk):
+    if request.method == 'GET':
+        return get_note(request, pk)
 
-@api_view(['POST'])
-def post_note(request):
-    data = request.data
-    note = Note.objects.create(
-        body = data['body']
-    )
-    serializer = NoteSerializer(note, many=False)
-    return Response(serializer.data)
+    elif request.method == 'PUT':
+        return update_note(request, pk)
 
-@api_view(['PUT'])
-def update_note(request, pk):
-    data = request.data
-    note = Note.objects.get(id=pk)
-    serializer = NoteSerializer(instance = note, data = data)
-
-    if serializer.is_valid():
-        serializer.save()
-
-    return Response(serializer.data)
-
-@api_view(["DELETE"])
-def delete_note(request, pk):
-    note = Note.objects.get(id=pk)
-    note.delete()
-    return Response(f"Note {pk} deleted succesfully.")
+    elif request.method == 'DELETE':
+        return delete_note(request, pk)
