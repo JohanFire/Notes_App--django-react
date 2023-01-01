@@ -147,3 +147,17 @@ https://reactrouter.com/web/guides/quick-start
 ```bash
     npm install react-router-dom
 ```
+
+---
+
+# Integrate React App with Django Project
+Having the frontend & backend in the same URL, so we can use the same domain for both.
+This means if I go to 127.0.0.1:8000   I should see the frontend. 
+And if I go to 127.0.0.1:8000/api/   I should see the backend.
+## Add frontend to django project
+move the frontend folder to the root of the django project
+
+## Run npm build in frontend folder
+```bash
+    npm run build
+```
