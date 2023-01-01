@@ -147,3 +147,70 @@ https://reactrouter.com/web/guides/quick-start
 ```bash
     npm install react-router-dom
 ```
+
+---
+
+# Integrate React App with Django Project
+Having the frontend & backend in the same URL, so we can use the same domain for both.
+This means if I go to 127.0.0.1:8000   I should see the frontend. 
+And if I go to 127.0.0.1:8000/api/   I should see the backend.
+## Add frontend to django project
+move the frontend folder to the root of the django project
+
+## Run npm build in frontend folder
+```bash
+    npm run build
+```
+
+## Add the build folder to Templates in django settings
+```python
+    # notes_app/settings.py
+    TEMPLATES = [
+        {
+            ...
+            'DIRS': [
+                BASE_DIR / 'frontend/build'
+            ],
+            ...
+        },
+    ]
+```
+
+## Configure React's static files with Django
+```python
+    # notes_app/settings.py
+    STATICFILES_DIRS = [
+        BASE_DIR / 'frontend/build/static'
+    ]
+```
+
+## Render React templates
+```python
+    # notes_app/urls.py
+    from django.views.generic import TemplateView
+
+    urlpatterns = [
+        ...
+        path('', TemplateView.as_view(template_name='index.html')),
+    ]
+```
+
+## Now Django is officially holding & serving the React app
+```bash
+    python manage.py runserver
+    # will run both backend & frontend (django & react)
+```
+
+## Theres a bug with the react router, so we need to add a catch all route
+what happens in this bug is that if you go to an specific route, it will show 404 because django is looking for that route, but it doesn't exist because React is who is handling the routes.
+This is fixed with:
+```python
+    # notes_app/urls.py
+    from django.views.generic import TemplateView
+
+    urlpatterns = [
+        ...
+        path('', TemplateView.as_view(template_name='index.html')),
+        path('<path:path>', TemplateView.as_view(template_name='index.html')),
+    ]
+```
