@@ -7,11 +7,8 @@ from .models import Note
 from .serializers import NoteSerializer
 from .utils import get_note, update_note, delete_note, get_all_notes, post_new_note
 
-# Create your views here.
-
 @api_view(['GET'])
 def get_routes(request):
-
     routes = [
         {
             'Endpoint': '/api/notes/',
@@ -44,7 +41,6 @@ def get_routes(request):
             'description': 'Deletes and exiting note'
         },
     ]
-
     return Response(routes)
 
 @api_view(['GET', 'POST'])
