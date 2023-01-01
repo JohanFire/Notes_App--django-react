@@ -200,3 +200,17 @@ move the frontend folder to the root of the django project
     python manage.py runserver
     # will run both backend & frontend (django & react)
 ```
+
+## Theres a bug with the react router, so we need to add a catch all route
+what happens in this bug is that if you go to an specific route, it will show 404 because django is looking for that route, but it doesn't exist because React is who is handling the routes.
+This is fixed with:
+```python
+    # notes_app/urls.py
+    from django.views.generic import TemplateView
+
+    urlpatterns = [
+        ...
+        path('', TemplateView.as_view(template_name='index.html')),
+        path('<path:path>', TemplateView.as_view(template_name='index.html')),
+    ]
+```
