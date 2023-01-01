@@ -214,3 +214,11 @@ This is fixed with:
         path('<path:path>', TemplateView.as_view(template_name='index.html')),
     ]
 ```
+
+### Or also can be fixed with a simple # in react:
+```javascript
+    // frontend/src/App.js
+    import { HashRouter as Router, Route, Routes } from 'react-router-dom'
+    // change BrowserRouter to HashRouter
+```
+this will show a # in every react route, may not look good, but it works.
