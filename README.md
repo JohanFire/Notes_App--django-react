@@ -175,3 +175,12 @@ move the frontend folder to the root of the django project
         },
     ]
 ```
+
+## Configure React's static files with Django
+```python
+    # notes_app/settings.py
+    STATICFILES_DIRS = [
+        BASE_DIR / 'frontend/build/static'
+    ]
+```
+
