@@ -223,3 +223,10 @@ This is fixed with:
     // change BrowserRouter to HashRouter
 ```
 this will show a # in every react route, may not look good, but it works.
+
+---
+
+# Bug fixed
+I got a bug when trying to solve the react router url bug, this was a cache bug, so using the first solution gave me more problems, the real solution was to use the second one(the # solution), but I had to clear the cache of the browser to make it work. 
+
+---
