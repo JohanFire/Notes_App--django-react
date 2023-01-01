@@ -161,3 +161,17 @@ move the frontend folder to the root of the django project
 ```bash
     npm run build
 ```
+
+## Add the build folder to Templates in django settings
+```python
+    # notes_app/settings.py
+    TEMPLATES = [
+        {
+            ...
+            'DIRS': [
+                BASE_DIR / 'frontend/build'
+            ],
+            ...
+        },
+    ]
+```
