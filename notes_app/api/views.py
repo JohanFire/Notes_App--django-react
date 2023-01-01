@@ -5,6 +5,7 @@ from rest_framework.decorators import api_view
 
 from .models import Note
 from .serializers import NoteSerializer
+from .utils import get_note, update_note, delete_note
 
 # Create your views here.
 
@@ -64,19 +65,10 @@ def get_post_notes(request):
 @api_view(['GET', 'PUT', 'DELETE'])
 def note_details(request, pk):
     if request.method == 'GET':
-        notes = Note.objects.get(id=pk)
-        serializer = NoteSerializer(notes, many=False) # many=False because we are serializing a single object 
-        return Response(serializer.data)
+        return get_note(request, pk)
+
     elif request.method == 'PUT':
-        data = request.data
-        note = Note.objects.get(id=pk)
-        serializer = NoteSerializer(instance = note, data = data)
+        return update_note(request, pk)
 
-        if serializer.is_valid():
-            serializer.save()
-
-        return Response(serializer.data)
     elif request.method == 'DELETE':
-        note = Note.objects.get(id=pk)
-        note.delete()
-        return Response(f"Note {pk} deleted succesfully.")
+        return delete_note(request, pk)
