@@ -46,7 +46,7 @@ def get_routes(request):
 
     return Response(routes)
 
-@api_view(['GET'])
+@api_view(['GET', 'POST'])
 def get_post_notes(request):
     if request.method == 'GET':
         notes = Note.objects.all().order_by('-updated_at') # -updated_at = descending order, shows more recent updated Note at first
