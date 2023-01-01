@@ -14,7 +14,7 @@ const NotePage = () => {
     const get_note = async () => {
         if (noteId === 'new') return
 
-        const response = await fetch(`/api/notes/${noteId}`)
+        const response = await fetch(`/api/notes/${noteId}/`)
         const data = await response.json()
         setNote(data)
         console.log(`DATA: `, data);
@@ -31,7 +31,7 @@ const NotePage = () => {
     };
 
     const update_note = async () => {
-        fetch(`/api/notes/${noteId}/update/`, {
+        fetch(`/api/notes/${noteId}/`, {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json'
@@ -43,7 +43,7 @@ const NotePage = () => {
     };
 
     const delete_note = async () => {
-        fetch(`/api/notes/${noteId}/delete/`, {
+        fetch(`/api/notes/${noteId}/`, {
             method: 'DELETE',
             headers: {
                 'Content-Type': 'application/json'

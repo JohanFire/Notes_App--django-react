@@ -61,34 +61,22 @@ def get_post_notes(request):
         serializer = NoteSerializer(note, many=False)
         return Response(serializer.data)
 
-@api_view(['GET'])
-def get_note_details(request, pk):
-    notes = Note.objects.get(id=pk)
-    serializer = NoteSerializer(notes, many=False) # many=False because we are serializing a single object 
-    return Response(serializer.data)
+@api_view(['GET', 'PUT', 'DELETE'])
+def note_details(request, pk):
+    if request.method == 'GET':
+        notes = Note.objects.get(id=pk)
+        serializer = NoteSerializer(notes, many=False) # many=False because we are serializing a single object 
+        return Response(serializer.data)
+    elif request.method == 'PUT':
+        data = request.data
+        note = Note.objects.get(id=pk)
+        serializer = NoteSerializer(instance = note, data = data)
 
-# @api_view(['POST'])
-# def post_note(request):
-#     data = request.data
-#     note = Note.objects.create(
-#         body = data['body']
-#     )
-#     serializer = NoteSerializer(note, many=False)
-#     return Response(serializer.data)
+        if serializer.is_valid():
+            serializer.save()
 
-@api_view(['PUT'])
-def update_note(request, pk):
-    data = request.data
-    note = Note.objects.get(id=pk)
-    serializer = NoteSerializer(instance = note, data = data)
-
-    if serializer.is_valid():
-        serializer.save()
-
-    return Response(serializer.data)
-
-@api_view(["DELETE"])
-def delete_note(request, pk):
-    note = Note.objects.get(id=pk)
-    note.delete()
-    return Response(f"Note {pk} deleted succesfully.")
+        return Response(serializer.data)
+    elif request.method == 'DELETE':
+        note = Note.objects.get(id=pk)
+        note.delete()
+        return Response(f"Note {pk} deleted succesfully.")
